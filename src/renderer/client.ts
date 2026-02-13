@@ -1,9 +1,21 @@
 import '@whatsacomputertho/fbsim-ui/register';
-import { WasmSimService } from '@whatsacomputertho/fbsim-ui';
+import { WasmSimService, WACTGameSim } from '@whatsacomputertho/fbsim-ui';
 
-const simService = new WasmSimService();
+(async (): Promise<void> => {
+  try {
+    const service = new WasmSimService();
+    await service.initialize();
 
-const gameSim = document.querySelector('wact-game-sim');
-if (gameSim) {
-  (gameSim as { setSimService: (s: WasmSimService) => void }).setSimService(simService);
-}
+    await customElements.whenDefined('wact-game-sim');
+
+    const gameSim = document.querySelector('wact-game-sim') as WACTGameSim;
+    if (gameSim) {
+      gameSim.setSimService(service);
+    }
+  } catch (error) {
+    console.warn(
+      'WasmSimService not available. Install @whatsacomputertho/fbsim-core to enable simulation.',
+      error,
+    );
+  }
+})();

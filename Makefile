@@ -1,20 +1,23 @@
-.PHONY: dependencies lint test build sec dev
+PLATFORM ?= win32
+ARCH ?= x64
 
-dependencies:
+.PHONY: build-dependencies lint test build sec dev
+
+build-dependencies:
 	npm ci
 
-lint: dependencies
+lint: build-dependencies
 	npx prettier --check "src/**/*.ts"
 	npx eslint src/
 
-test: dependencies
+test: build-dependencies
 	npx vitest run
 
-build: dependencies
-	npx electron-forge package
+build: build-dependencies
+	npx electron-forge make --platform=$(PLATFORM) --arch=$(ARCH)
 
-sec: dependencies
-	npm audit --audit-level=high
+sec: build-dependencies
+	npm audit --omit=dev --audit-level=high
 
-dev: dependencies
+dev: build-dependencies
 	npx electron-forge start

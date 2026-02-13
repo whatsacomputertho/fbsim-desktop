@@ -1,0 +1,52 @@
+name: Build
+
+on:
+  push:
+    branches: '**'
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: build (${{ matrix.platform }}-${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win32
+            arch: x64
+          - os: windows-latest
+            platform: win32
+            arch: arm64
+          - os: macos-latest
+            platform: darwin
+            arch: x64
+          - os: macos-latest
+            platform: darwin
+            arch: arm64
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Build Application
+        run: |
+          make build-dependencies
+          make build PLATFORM=${{ matrix.platform }} ARCH=${{ matrix.arch }}
+      - name: Release Application
+        if: github.event_name == 'release'
+        run: bash ci/release.sh "${{ github.event.release.upload_url }}" "${{ matrix.platform }}-${{ matrix.arch }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

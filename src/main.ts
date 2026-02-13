@@ -7,9 +7,15 @@ if (started) {
 }
 
 const createWindow = (): void => {
+  const iconPath = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets/icon.png')
+    : path.join(process.cwd(), 'src', 'renderer', 'assets', 'icon.png');
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    minWidth: 800,
+    minHeight: 600,
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

@@ -1,6 +1,6 @@
 {
   "name": "fbsim-desktop",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "A desktop american football simulation user interface built atop the fbsim-core Rust crate",
   "main": ".vite/build/main.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@whatsacomputertho/fbsim-ui": "file:../fbsim-ui",
+    "@whatsacomputertho/fbsim-ui": "^1.0.0-beta.2",
     "electron-squirrel-startup": "^1.0.1"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "@electron-forge/maker-zip": "^7.6.0",
     "@electron-forge/plugin-vite": "^7.6.0",
     "@eslint/js": "^9.0.0",
-    "electron": "^34.0.0",
+    "electron": "^40.2.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.0.0",
     "prettier": "^3.4.0",

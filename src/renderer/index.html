@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' data: ws:">
-    <title>Football Simulator</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https:; connect-src 'self' data: ws:">
+    <title>FootballSim</title>
     <link rel="stylesheet" href="./styles/index.css">
-    <link rel="icon" type="image/x-icon" href="./assets/wactfavicon.png">
   </head>
   <body>
-    <wact-nav>
-      <img src="./assets/wactlogo.jpg">
-    </wact-nav>
     <div id="main-wrapper">
       <wact-game-sim></wact-game-sim>
     </div>

@@ -8,6 +8,7 @@ const { VitePlugin } = require('@electron-forge/plugin-vite');
 const config = {
   packagerConfig: {
     asar: true,
+    icon: './src/renderer/assets/icon'
   },
   rebuildConfig: {},
   makers: [
