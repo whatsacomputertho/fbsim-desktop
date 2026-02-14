@@ -3,6 +3,7 @@ set -euo pipefail
 
 UPLOAD_URL="${UPLOAD_URL:?UPLOAD_URL environment variable is required}"
 SUFFIX="${1:?Usage: release.sh <platform-arch>}"
+UPLOAD_URL="${UPLOAD_URL%%\{*}"
 
 found=0
 
