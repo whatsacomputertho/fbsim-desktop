@@ -47,6 +47,7 @@ jobs:
           make build PLATFORM=${{ matrix.platform }} ARCH=${{ matrix.arch }}
       - name: Release Application
         if: github.event_name == 'release'
-        run: bash ci/release.sh '${{ github.event.release.upload_url }}' '${{ matrix.platform }}-${{ matrix.arch }}'
+        run: bash ci/release.sh '${{ matrix.platform }}-${{ matrix.arch }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPLOAD_URL: ${{ github.event.release.upload_url }}
