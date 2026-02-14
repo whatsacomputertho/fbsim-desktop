@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-UPLOAD_URL="${1:?Usage: release.sh <upload_url> <platform-arch>}"
-SUFFIX="${2:?Usage: release.sh <upload_url> <platform-arch>}"
-
 UPLOAD_URL="${UPLOAD_URL:?UPLOAD_URL environment variable is required}"
 SUFFIX="${1:?Usage: release.sh <platform-arch>}"
 
