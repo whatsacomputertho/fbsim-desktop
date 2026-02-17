@@ -17,7 +17,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@whatsacomputertho/fbsim-ui": "github:whatsacomputertho/fbsim-ui#main",
+    "@whatsacomputertho/fbsim-ui": "github:whatsacomputertho/fbsim-ui#multi-platform-fix",
     "electron-squirrel-startup": "^1.0.1"
   },
   "devDependencies": {
